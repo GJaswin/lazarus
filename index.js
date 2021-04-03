@@ -18,7 +18,8 @@ client.login(TOKEN);
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
     client.user.setActivity('Hm what\'s this?', {
-        type: 'CUSTOM_STATUS'
+        type: 'CUSTOM_STATUS',
+        name: 'Wondering'
     });
            
 });
