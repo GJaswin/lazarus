@@ -17,8 +17,8 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-    client.user.setActivity('your mom', {
-        type: 'WATCHING'
+    client.user.setActivity('Hm what\'s this?', {
+        type: 'CUSTOM_STATUS'
     });
            
 });
