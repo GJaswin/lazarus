@@ -19,8 +19,8 @@ client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);    
 });
 
-client.user.setPresence("your mom", {
-type: "WATCHING"
+client.user.setActivity('your mom', {
+type: 'WATCHING'
 });
 
 client.on('message', txt => {
