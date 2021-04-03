@@ -19,6 +19,9 @@ client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);    
 });
 
+client.user.setActivity("your mom", {
+type: "WATCHING"
+});
 
 client.on('message', txt => {
     if (txt.content === 'l.ping') {
