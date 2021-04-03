@@ -17,8 +17,8 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-    client.user.setActivity('the babies crying in my basement', {
-        type: 'LISTENING'
+    client.user.setActivity('for Shaun to come back 😔', {
+        type: 'WATCHING'
     });
            
 });
