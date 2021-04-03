@@ -17,9 +17,8 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-    client.user.setActivity('Hm what\'s this?', {
-        type: 'CUSTOM_STATUS',
-        name: 'Wondering'
+    client.user.setActivity('to the babies crying in my basement', {
+        type: 'LISTENING',
     });
            
 });
