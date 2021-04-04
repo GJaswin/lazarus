@@ -22,15 +22,10 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-    readline.question('Status?', (stattyp, stattext) => {
-        client.user.setActivity('${stattext}', {
-            type: '${stattyp}'
+        client.user.setActivity('with Baby Yoda', {
+            type: 'PLAYING'
         });
-        readline.close();
     });
-     
-          
-});
 
 
 client.on('message', txt => {
