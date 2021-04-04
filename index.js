@@ -22,7 +22,7 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-    readline.question('Status Type?','Status Text?', typ, txt => {
+    readline.question('Status?', typ, txt, status => {
         client.user.setActivity('${txt}', {
             type: '${typ}'
         });
