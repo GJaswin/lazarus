@@ -22,8 +22,8 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-        client.user.setActivity('with Baby Yoda', {
-            type: 'PLAYING'
+        client.user.setActivity('your mom', {
+            type: 'WATCHING'
         });
     });
 
