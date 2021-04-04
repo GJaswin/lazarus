@@ -22,19 +22,13 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-    readline.question('Status Type?', type => {
-        client.user.setActivity(' ', {
+    readline.question('Status Type?','Status Text?', type, txt => {
+        client.user.setActivity('${txt}', {
             type: '${type}'
         });
         readline.close();
     });
-    readline.question('Status Text?', text => {
-        client.user.setActivity('${text}', {
-            type: ' '
-        });
-        readline.close();
-    });
-    
+     
           
 });
 
