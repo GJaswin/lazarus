@@ -8,6 +8,11 @@ app.listen(port, () => console.log(`Lazarus listening at http://localhost:${port
 
 
 const fs = require('fs');
+const readline = require('readline').createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const env = require('dotenv').config({ path: "./login.env" });
@@ -17,10 +22,20 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-    client.user.setActivity('for Shaun to come back 😔', {
-        type: 'WATCHING'
+    readline.question('Status Type?', type => {
+        client.user.setActivity(' ', {
+            type: '${type}'
+        });
+        readline.close();
     });
-           
+    readline.question('Status Text?', text => {
+        client.user.setActivity('${text}', {
+            type: ' '
+        });
+        readline.close();
+    });
+    
+          
 });
 
 
