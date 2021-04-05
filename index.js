@@ -31,6 +31,7 @@ client.once('ready', () => {
 client.on('message', txt => {
     
     var gay = /(im gay)/;
+    var gaytest = txt.match(gay);
 
 
     if (txt.content === 'l.ping') {
@@ -43,7 +44,7 @@ else if (txt.content === 'l.invite') {
     return;
 }
 
-else if (txt.content = txt.match(gay)) {
+else if (txt.content = gaytest) {
     txt.reply('Congrats faggot');
     return;
 }
