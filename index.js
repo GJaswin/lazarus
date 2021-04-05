@@ -31,7 +31,7 @@ client.once('ready', () => {
 client.on('message', txt => {
     
     var gay = /(im gay)/;
-    var gaytest = gay.match(gay);
+    var gaytest = txt.content.match(gay);
 
 
     if (txt.content === 'l.ping') {
