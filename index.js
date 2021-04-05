@@ -32,8 +32,11 @@ client.on('message', txt => {
 
     if (txt.author.bot) return;
     
-    var gay = /(im gay)/;
+    var gay = /(im gay|i'm gay)/i;
     var gaytest = txt.content.match(gay);
+
+var straight = /(im straight|i'm straight)/i;
+var straighttest = txt.content.match(straight);
 
 
     if (txt.content === 'l.ping') {
@@ -48,6 +51,11 @@ else if (txt.content === 'l.invite') {
 
 else if (txt.content = gaytest) {
     txt.reply('Congrats fag');
+    return;
+}
+
+else if (txt.content = straighttest) {
+    txt.react('🧢');
     return;
 }
 
