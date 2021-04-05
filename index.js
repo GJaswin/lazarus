@@ -42,7 +42,7 @@ else if (txt.content === 'l.invite') {
     return;
 }
 
-else if (txt.content === gay) {
+else if (txt.content = gay) {
     txt.reply('Congrats faggot');
 }
 
