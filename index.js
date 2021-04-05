@@ -40,4 +40,9 @@ else if (txt.content === 'l.invite') {
     return;
 }
 
+else if (txt.content = /im gay/i) {
+    txt.reply ('test');
+    return;
+}
+
 });
