@@ -32,9 +32,12 @@ client.on('message', txt => {
 
     if (txt.content === 'l.ping') {
         txt.channel.send ('pong!');
-} 
+        return;
+    }
+
 else if (txt.content === 'l.invite') {
     txt.channel.send ('Invite Link: https://discord.com/api/oauth2/authorize?client_id=813046916920115261&permissions=8&scope=bot');
+    return;
 }
 
 });
