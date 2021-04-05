@@ -40,4 +40,8 @@ else if (txt.content === 'l.invite') {
     return;
 }
 
+else if (txt.content === 'im gay') {
+    txt.reply('Congrats faggot')
+}
+
 });
