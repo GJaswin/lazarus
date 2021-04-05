@@ -29,6 +29,8 @@ client.once('ready', () => {
 
 
 client.on('message', txt => {
+
+    if (txt.author.bot) return;
     
     var gay = /(im gay)/;
     var gaytest = txt.content.match(gay);
