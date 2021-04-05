@@ -29,17 +29,12 @@ client.once('ready', () => {
 
 
 client.on('message', txt => {
-    var match.gay = /im gay/i;
-    var match.gay.result = str.search(match.gay)
 
     if (txt.content === 'l.ping') {
         txt.channel.send ('pong!');
 } 
 else if (txt.content === 'l.invite') {
     txt.channel.send ('Invite Link: https://discord.com/api/oauth2/authorize?client_id=813046916920115261&permissions=8&scope=bot');
-}
-else if (txt.content === match.gay.result) {
-    txt.reply ('Congrats faggot');
 }
 
 });
