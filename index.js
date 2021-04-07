@@ -17,8 +17,10 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const { prefix } = require('./config.json');
+
 client.commands = new Discord.Collection();
 client.ars = new Discord.Collection();
+
 const cmdFiles = fs.readdirSync('./commands').filter(cmdfile => cmdfile.endsWith('.js'));
 const arFiles = fs.readdirSync('./autoresponses').filter(arfile => arfile.endsWith('.js'));
 
