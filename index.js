@@ -14,22 +14,15 @@ const readline = require('readline').createInterface({
 });
 
 const Discord = require('discord.js');
+const { prefix } = require('./config.json');
 const client = new Discord.Client();
 
-const { prefix } = require('./config.json');
 client.commands = new Discord.Collection();
-client.ars = new Discord.Collection();
-const cmdFiles = fs.readdirSync('./cmds').filter(cmdfile => cmdfile.endsWith('.js'));
-const arFiles = fs.readdirSync('./ars').filter(arfile => arfile.endsWith('.js'));
+const cmdFiles = fs.readdirSync('./cmds').filter(file => file.endsWith('.js'));
 
-for (const cmdfile of cmdFiles) {
-    const cmd = require('./cmds/${cmdfile}');
+for (const file of cmdFiles) {
+    const cmd = require(`./cmds/${file}`);
     client.commands.set(cmd.name, cmd);
-}
-
-for (const arfile of arFiles) {
-    const ar = require('./ars/${arfile}');
-    client.ars.set(ar.name, ar);
 }
 
 //login
@@ -62,3 +55,4 @@ client.on('message', txt => {
     }
 
 });
+

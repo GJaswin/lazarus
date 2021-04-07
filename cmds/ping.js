@@ -4,4 +4,4 @@ module.exports = {
     execute(txt, args) {
         txt.channel.send('Pong!');
     }
-}
+};
