@@ -47,11 +47,15 @@ client.on('message', txt => {
     const args = txt.content.slice(prefix.length).trim().spilt(/ +/);
     const cmd = args.shift().toLowerCase(); 
     
-    if (cmd === 'ping') {
-        client.commands.get('ping').execute(txt, args); 
+    if (!client.commands.has(command)) return;
 
-    } else if (cmd === 'invite') {
-        client.commands.get('invite').execute(txt, args);
+    try {
+        client.commands.get(command).execute(txt, args);
+
+    } catch(error) {
+        console.error(error);
+        txt.reply('I couldn\'t run that command!');
+
     }
 
 });
