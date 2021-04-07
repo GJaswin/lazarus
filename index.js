@@ -19,16 +19,16 @@ const client = new Discord.Client();
 const { prefix } = require('./config.json');
 client.commands = new Discord.Collection();
 client.ars = new Discord.Collection();
-const cmdFiles = fs.readdirSync('./commands').filter(cmdfile => cmdfile.endsWith('.js'));
-const arFiles = fs.readdirSync('./autoresponses').filter(arfile => arfile.endsWith('.js'));
+const cmdFiles = fs.readdirSync('./cmds').filter(cmdfile => cmdfile.endsWith('.js'));
+const arFiles = fs.readdirSync('./ars').filter(arfile => arfile.endsWith('.js'));
 
 for (const cmdfile of cmdFiles) {
-    const cmd = require('./commands/${cmdfile}');
-    client.commands.set(cmd.name, comd);
+    const cmd = require('./cmds/${cmdfile}');
+    client.commands.set(cmd.name, cmd);
 }
 
 for (const arfile of arFiles) {
-    const ar = require('./autoresponses/${arfile}');
+    const ar = require('./ars/${arfile}');
     client.ars.set(ar.name, ar);
 }
 
