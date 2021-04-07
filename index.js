@@ -44,7 +44,7 @@ client.on('message', txt => {
 
     if (!txt.content.startsWith(prefix) || txt.author.bot) return;
 
-    const args = txt.content.slice(prefix.length).trim().spilt(/ +/);
+    const args = txt.content.slice(prefix.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase(); 
     
     if (!client.commands.has(command)) return;
