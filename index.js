@@ -47,10 +47,10 @@ client.on('message', txt => {
     const args = txt.content.slice(prefix.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase(); 
     
-    if (!client.commands.has(command)) return;
+    if (!client.commands.has(cmd)) return;
 
     try {
-        client.commands.get(command).execute(txt, args);
+        client.commands.get(cmd).execute(txt, args);
 
     } catch(error) {
         console.error(error);
