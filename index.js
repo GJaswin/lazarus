@@ -6,7 +6,7 @@ app.get('/', (req, res) => res.send('Lazarus is Online'));
 
 app.listen(port, () => console.log(`Lazarus listening at http://localhost:${port}`));
 
-
+//main imports
 const fs = require('fs');
 const readline = require('readline').createInterface({
     input: process.stdin,
@@ -15,13 +15,24 @@ const readline = require('readline').createInterface({
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
-client.commands = new Discord.Collection();
-const cmdFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-for (const file of cmdFiles) {
-    const command = require ('./commands/${file}');
+const { prefix } = require('./config.json');
+client.commands = new Discord.Collection();
+client.ars = new Discord.Collection();
+const cmdFiles = fs.readdirSync('./commands').filter(cmdfile => cmdfile.endsWith('.js'));
+const arFiles = fs.readdirSync('./autoresponses').filter(arfile => arfile.endsWith('.js'));
+
+for (const cmdfile of cmdFiles) {
+    const cmd = require('./commands/${cmdfile}');
     client.commands.set(command.name, command);
 }
+
+for (const arfile of arFiles) {
+    const ar = require('./autoresponses/${arfile}');
+    client.ars.set(ar.name, ar);
+}
+
+//login
 
 const env = require('dotenv').config({ path: "./login.env" });
 const TOKEN = process.env.DISCORD_TOKEN;
@@ -35,36 +46,19 @@ client.once('ready', () => {
         });
     });
 
-
+//message events
 client.on('message', txt => {
 
-    if (txt.author.bot) return;
+    if (!txt.content.startsWith(prefix) || txt.author.bot) return;
+
+    const args = txt.content.slice(prefix.length).trim().spilt(/ +/);
+    const cmd = args.shift().toLowerCase(); 
     
-    var gay = /(im gay|i'm gay)/i;
-    var gaytest = txt.content.match(gay);
+    if (cmd === 'ping') {
+        client.commands.get('ping').execute(txt, args); 
 
-var straight = /(im straight|i'm straight)/i;
-var straighttest = txt.content.match(straight);
-
-
-    if (txt.content === 'l.ping') {
-        txt.channel.send ('pong!');
-        return;
+    } else if (cmd === 'invite') {
+        client.commands.get('invite').execute(txt, args);
     }
-
-else if (txt.content === 'l.invite') {
-    txt.channel.send ('Invite Link: https://discord.com/api/oauth2/authorize?client_id=813046916920115261&permissions=8&scope=bot');
-    return;
-}
-
-else if (txt.content = gaytest) {
-    txt.reply('Congrats fag');
-    return;
-}
-
-else if (txt.content = straighttest) {
-    txt.react('🧢');
-    return;
-}
 
 });
