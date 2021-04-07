@@ -24,7 +24,7 @@ const arFiles = fs.readdirSync('./autoresponses').filter(arfile => arfile.endsWi
 
 for (const cmdfile of cmdFiles) {
     const cmd = require('./commands/${cmdfile}');
-    client.commands.set(command.name, command);
+    client.commands.set(cmd.name, cmd);
 }
 
 for (const arfile of arFiles) {
