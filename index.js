@@ -46,7 +46,7 @@ client.once('ready', () => {
         });
     });
 
-//message events
+//message event
 client.on('message', txt => {
 
     if (!txt.content.startsWith(prefix) || txt.author.bot) return;
