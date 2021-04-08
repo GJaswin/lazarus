@@ -52,7 +52,6 @@ client.on('message', txt => {
 
     } catch(error) {
         console.error(error);
-        txt.reply('I couldn\'t run that command!');
     }
 
 });
