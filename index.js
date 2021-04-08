@@ -52,7 +52,8 @@ client.on('message', txt => {
     if (txt.author.bot) return;
 
     const args = txt.content.slice(prefix.length).trim().split(/ +/);
-    const cmd = args.shift().toLowerCase(); 
+    const cmd = args.shift().toLowerCase();
+    const ar = txt.content;
     if (txt.content.startsWith(prefix)) {
     try {
         client.commands.get(cmd).execute(txt, args);
