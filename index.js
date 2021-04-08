@@ -18,18 +18,11 @@ const { prefix } = require('./config.json');
 const client = new Discord.Client();
 
 client.commands = new Discord.Collection();
-client.ars = new Discord.Collection();
 const cmdFiles = fs.readdirSync('./cmds').filter(cmdfile => cmdfile.endsWith('.js'));
-const arFiles = fs.readdirSync('./ars').filter(arfile => arfile.endsWith('.js'));
 
 for (const cmdfile of cmdFiles) {
     const cmd = require(`./cmds/${cmdfile}`);
     client.commands.set(cmd.name, cmd);
-}
-
-for (const arfile of arFiles) {
-    const ar = require(`./ars/${arfile}`);
-    client.ars.set(ar.name, ar);
 }
 
 //login
@@ -49,12 +42,11 @@ client.once('ready', () => {
 //message event
 client.on('message', txt => {
 
-    if (txt.author.bot) return;
+    if (!txt.content.startsWith(prefix) || txt.author.bot) return;
 
     const args = txt.content.slice(prefix.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase();
-    const ar = txt.content;
-    if (txt.content.startsWith(prefix)) {
+        
     try {
         client.commands.get(cmd).execute(txt, args);
 
@@ -62,16 +54,6 @@ client.on('message', txt => {
         console.error(error);
         txt.reply('I couldn\'t run that command!');
     }
-} else {
-    try {
-        client.ars.get(ar).execute(txt);
-
-    } catch(error) {
-        console.error(error);
-    }  
-
- }
-
 
 });
 
