@@ -34,9 +34,8 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-        client.user.setActivity('your mom', {
-            type: 'WATCHING'
-        });
+        client.user.setStatus('dnd')
+        .then(console.log);
     });
 
 //message event
