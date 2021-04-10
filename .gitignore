@@ -2,3 +2,4 @@
 login.env
 **workspace
 .vs
+node_modules
