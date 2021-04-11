@@ -41,17 +41,26 @@ client.once('ready', () => {
 //message event
 client.on('message', txt => {
 
-    if (!txt.content.startsWith(prefix) || txt.author.bot) return;
+    if (txt.author.bot) return;
 
     const args = txt.content.slice(prefix.length).trim().split(/ +/);
     const cmd = args.shift().toLowerCase();
-        
+
+
+    if (txt.content.startsWith(prefix)) {    
     try {
         client.commands.get(cmd).execute(txt, args);
 
     } catch(error) {
         console.error(error);
     }
+}
+
+if (!txt.content.startsWith(prefix)) {
+    if (txt.mentions.has('704217047063855164')) {
+txt.reply('please don\'t ping jaws, he\'s got work but he\'s a distracted piece of shit and will waste his time here');
+    }
+}
 
 });
 
