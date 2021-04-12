@@ -57,16 +57,20 @@ client.on('message', txt => {
 }
 
 //ars
+var gay = /(im gay|i'm gay)/i;
+var straight = /(im straight|i'm straight)/i;
+
+
 if (!txt.content.startsWith(prefix)) {
     if (txt.mentions.has('704217047063855164')) {
 txt.reply('please don\'t ping jaws, he\'s got work but he\'s a distracted piece of shit and will waste his time here');
     }
 
-    else if (txt.content === /(im gay|i'm gay)/i) {
+    else if (txt.content.match(gay)) {
         txt.reply('Congrats fag');
     } 
 
-    else if (txt.content === /(im straight|i'm straight)/i) {
+    else if (txt.content.match(straight)) {
         txt.react('🧢');
     }
 }
