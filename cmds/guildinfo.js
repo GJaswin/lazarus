@@ -12,7 +12,7 @@ module.exports = {
         .setColor('#ff6008')
         .setTitle('Server Info: ' + txt.channel.guild.name)
         .setThumbnail(txt.channel.guild.iconURL('png'))
-        .setDescription(`Owner: **${txt.channel.guild.owner.user.tag}** \n Owner ID: \`${txt.channel.guild.ownerID}\``)
+        .setDescription(`Owner: **${txt.channel.guild.owner.user.tag}** \n Owner ID: ${txt.channel.guild.ownerID}`)
         .addFields(
             {name: 'Created on', value: creationdate },
             { name: 'Server Member Count', value: txt.channel.guild.memberCount, inline: true },
