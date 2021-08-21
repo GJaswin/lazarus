@@ -8,21 +8,21 @@ app.listen(port, () => console.log(`Lazarus listening at http://localhost:${port
 
 //main imports
 const fs = require('fs');
-const readline = require('readline').createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
 
-const Discord = require('discord.js');
+const { Client, Intents, Collection } = require('discord.js');
 const { prefix } = require('./config.json');
-const client = new Discord.Client();
 
-client.commands = new Discord.Collection();
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+
+const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+
+client.commands = new Collection();
 const cmdFiles = fs.readdirSync('./cmds').filter(cmdfile => cmdfile.endsWith('.js'));
 
 for (const cmdfile of cmdFiles) {
     const cmd = require(`./cmds/${cmdfile}`);
-    client.commands.set(cmd.name, cmd);
+    client.commands.set(cmd.data.name, cmd);
 }
 
 //login
@@ -34,32 +34,31 @@ client.login(TOKEN);
 
 client.once('ready', () => {
     console.log("Fired up! - " + client.user.tag);
-        client.user.setStatus('dnd')
-        .then(console.log);
+        client.user.setStatus('idle');
     });
 
+//interaction event
+client.on('interactionCreate', async interaction => {
+  if (!interaction.isCommand()) return;
+
+  const command = client.commands.get(interaction.commandName);
+  if (!command) return;
+
+  try {
+      await command.execute(interaction);
+  } catch (error) {
+      console.error(error);
+      await interaction.reply({content: 'Error occured.', ephemeral: true});
+  }
+});
+
+
 //message event
-client.on('message', txt => {
-
-    if (txt.author.bot) return;
-
-    const args = txt.content.slice(prefix.length).trim().split(/ +/);
-    const cmd = args.shift().toLowerCase();
-
-
-    if (txt.content.startsWith(prefix)) {    
-    try {
-        client.commands.get(cmd).execute(txt, args);
-
-    } catch(error) {
-        console.error(error);
-    }
-}
-
-//ars
 var gay = /(i'?m gay)/i;
 var straight = /(i'?m straight|i'?m not gay)/i;
 
+client.on('messageCreate', txt => {
+//ars
 
 if (!txt.content.startsWith(prefix)) {
     
@@ -70,7 +69,7 @@ if (!txt.content.startsWith(prefix)) {
     else if (txt.content.match(straight)) {
         txt.react('🧢');
     }
-}
-
+} 
+    
 });
 

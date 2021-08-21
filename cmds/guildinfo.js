@@ -1,29 +1,25 @@
+const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageEmbed } = require('discord.js');
 const Discord = require('discord.js');
 
 module.exports = {
-    name: "serverinfo",
-    description: "Shows server info",
-    guildOnly: true,
-    execute(txt, args) {
+    data: new SlashCommandBuilder()
+    .setName('serverinfo')
+    .setDescription('Displays information about the current server'),
+    async execute(interaction) {
         var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        var creationdate = `${txt.channel.guild.createdAt.getDate()} ${months[txt.channel.guild.createdAt.getMonth()]} ${txt.channel.guild.createdAt.getFullYear()} at ${txt.channel.guild.createdAt.getHours()}:${txt.channel.guild.createdAt.getMinutes()}:${txt.channel.guild.createdAt.getSeconds()}`;
-                
-        const serverinfoembed = new Discord.MessageEmbed()
-        .setColor('#ff6008')
-        .setTitle('Server Info: ' + txt.channel.guild.name)
-        .setThumbnail(txt.channel.guild.iconURL('png'))
-        .setDescription(`Owner: **${txt.channel.guild.owner.user.tag}** \n Owner ID: \`${txt.channel.guild.ownerID}\``)
-        .addFields(
-            {name: 'Created on', value: creationdate },
-            { name: 'Server Member Count', value: txt.channel.guild.memberCount, inline: true },
-                 
-        );
-
-
-
-        txt.channel.send(serverinfoembed);
-
+    var creationdate = `${interaction.guild.createdAt.getDate()} ${months[interaction.guild.createdAt.getMonth()]} ${interaction.guild.createdAt.getFullYear()} at ${interaction.guild.createdAt.getHours()}:${interaction.guild.createdAt.getMinutes()}:${interaction.guild.createdAt.getSeconds()}`;
+            
+    const serverinfoembed = new MessageEmbed()
+    .setColor('#ff6008')
+    .setTitle('Server Info: ' + interaction.guild.name)
+    .setThumbnail(interaction.guild.iconURL('png'))
+    .setDescription(`Owner: **${interaction.guild.ownerId}** \n Owner ID: \`${interaction.guild.ownerId}\``)
+    .addFields(
+        {name: 'Created on', value: creationdate },
+        { name: 'Server Member Count', value: interaction.guild.memberCount, inline: true },
+             
+    );
+        await interaction.reply({embeds: [serverinfoembed]});
     }
-
-    
-}
+    };
