@@ -10,7 +10,6 @@ app.listen(port, () => console.log(`Lazarus listening at http://localhost:${port
 const fs = require('fs');
 
 const { Client, Intents, Collection } = require('discord.js');
-const { prefix } = require('./config.json');
 
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
@@ -50,26 +49,5 @@ client.on('interactionCreate', async interaction => {
       console.error(error);
       await interaction.reply({content: 'Error occured.', ephemeral: true});
   }
-});
-
-
-//message event
-var gay = /(i'?m gay)/i;
-var straight = /(i'?m straight|i'?m not gay)/i;
-
-client.on('messageCreate', txt => {
-//ars
-
-if (!txt.content.startsWith(prefix)) {
-    
-    if (txt.content.match(gay)) {
-        txt.reply('Congrats fag');
-    } 
-
-    else if (txt.content.match(straight)) {
-        txt.react('🧢');
-    }
-} 
-    
 });
 
