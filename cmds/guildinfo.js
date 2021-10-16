@@ -14,10 +14,10 @@ module.exports = {
     .setColor('#ff6008')
     .setTitle('Server Info: ' + interaction.guild.name)
     .setThumbnail(interaction.guild.iconURL('png'))
-    .setDescription(`Owner: **${interaction.guild.ownerId}** \n Owner ID: \`${interaction.guild.ownerId}\``)
+    .setDescription(`Owner ID: \`${interaction.guild.ownerId}\``)
     .addFields(
-        {name: 'Created on', value: creationdate },
-        { name: 'Server Member Count', value: interaction.guild.memberCount, inline: true },
+        {name: 'Created on', value: creationdate.toString() },
+        { name: 'Server Member Count', value: interaction.guild.memberCount.toString(), inline: true }
              
     );
         await interaction.reply({embeds: [serverinfoembed]});
